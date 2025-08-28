@@ -4,13 +4,6 @@ A clean, modern **React-based storefront demo** featuring a hero landing page an
 
 ---
 
-## 🌐 Live Preview (if deployed)
-
-If deployed, provide your app link here:  
-👉 https://codemagicianequinox.github.io/React-Project/  
-(or your Netlify/Vercel URL)
-
----
 
 ## 📖 Project Overview
 
