@@ -1,0 +1,125 @@
+/* Reset / base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Navbar + Footer (assumes your Navbar/Footer already have wrapper divs) */
+.navbar, .footer {
+  background: #0f172a;
+  color: #fff;
+  padding: 12px 16px;
+}
+.navbar a, .footer a {
+  color: #cbd5e1;
+  text-decoration: none;
+  margin-right: 12px;
+}
+.navbar a:hover { color: #fff; }
+
+/* Catalog page */
+.catalog-page .container {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.catalog-controls {
+  display: grid;
+  grid-template-columns: 1fr 160px 1fr 200px;
+  gap: 12px;
+  align-items: center;
+}
+.catalog-controls input,
+.catalog-controls select {
+  padding: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.products-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* Product card baseline */
+.product-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+.product-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.product-card img {
+  width: 100%;
+  display: block;
+}
+.product-card .info {
+  padding: 12px;
+}
+.product-card h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.product-card .info {
+  padding: 12px;
+}
+
+.product-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 14px;
+  color: #374151;
+  margin: 0 0 12px;
+}
+
+.price {
+  font-weight: 600;
+  color: #111827;
+}
+
+.rating {
+  color: #facc15; /* gold stars */
+  font-size: 14px;
+}
+
+.catalog-header {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 32px 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.catalog-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.catalog-header p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.9;
+}

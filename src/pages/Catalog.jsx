@@ -1,86 +1,82 @@
-// src/pages/Catalog.jsx
-import { useMemo, useState } from "react";
-import ProductCard from "../components/ProductCard";
-import products, { CATEGORIES } from "../data/products";
+import products, { CATEGORIES } from "../data/products.js";
+import ProductCard from "../components/ProductCard.jsx";
+import { useState } from "react";
 
 export default function Catalog() {
-  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [sort, setSort] = useState("title");
   const [maxPrice, setMaxPrice] = useState(200);
-  const [sortBy, setSortBy] = useState("relevance"); // relevance | priceLow | priceHigh | rating
 
-  const filtered = useMemo(() => {
-    let view = products.filter(p => 
-      (category === "All" || p.category === category) &&
-      p.price <= maxPrice &&
-      (p.title.toLowerCase().includes(query.toLowerCase()) ||
-       p.description.toLowerCase().includes(query.toLowerCase()))
-    );
-
-    switch (sortBy) {
-      case "priceLow":  view.sort((a, b) => a.price - b.price); break;
-      case "priceHigh": view.sort((a, b) => b.price - a.price); break;
-      case "rating":    view.sort((a, b) => b.rating - a.rating); break;
-      default:          /* relevance = leave as-is */ break;
-    }
-    return view;
-  }, [query, category, maxPrice, sortBy]);
+  const filtered = products
+    .filter((p) =>
+      category === "All" ? true : p.category === category
+    )
+    .filter((p) =>
+      p.title.toLowerCase().includes(search.toLowerCase())
+    )
+    .filter((p) => p.price <= maxPrice)
+    .sort((a, b) => {
+      if (sort === "price") return a.price - b.price;
+      if (sort === "rating") return b.rating - a.rating;
+      return a.title.localeCompare(b.title);
+    });
 
   return (
     <section className="catalog-page">
-      <div className="container">
-        <h1 className="mb-3">Catalog</h1>
+      <header className="catalog-header">
+        <h1>🛍️ Our Catalog</h1>
+        <p>Browse products, filter by category, and find your favorites.</p>
+      </header>
 
-        <div className="catalog-controls">
-          <input
-            type="search"
-            className="catalog-search"
-            placeholder="Search products…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+      <div className="container catalog-controls">
+        <input
+          className="catalog-search"
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-          <select
-            className="catalog-select"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            {CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
-          </select>
+        <select
+          className="catalog-select"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          {CATEGORIES.map((c) => (
+            <option key={c}>{c}</option>
+          ))}
+        </select>
 
-          <label className="catalog-price">
-            <span>Max Price: ${maxPrice}</span>
+        <div className="catalog-price">
+          <label>
+            Max Price: ${maxPrice}
             <input
               type="range"
-              min="10"
+              min="0"
               max="200"
               step="1"
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
             />
           </label>
-
-          <select
-            className="catalog-select"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
-            <option value="relevance">Sort: Relevance</option>
-            <option value="priceLow">Sort: Price (Low → High)</option>
-            <option value="priceHigh">Sort: Price (High → Low)</option>
-            <option value="rating">Sort: Rating</option>
-          </select>
         </div>
 
-        <div className="products-grid">
-          {filtered.length === 0 ? (
-            <p className="mb-3">No products match your filters.</p>
-          ) : (
-            filtered.map(p => (
-              <ProductCard key={p.id} {...p} />
-            ))
-          )}
-        </div>
+        <select
+          className="catalog-select"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
+          <option value="title">Sort: A–Z</option>
+          <option value="price">Sort: Price</option>
+          <option value="rating">Sort: Rating</option>
+        </select>
+      </div>
+
+      <div className="products-grid">
+        {filtered.map((p) => (
+          <ProductCard key={p.id} {...p} />
+        ))}
       </div>
     </section>
   );
