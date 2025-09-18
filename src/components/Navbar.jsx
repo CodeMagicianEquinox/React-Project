@@ -6,17 +6,14 @@ function Navbar() {
       <div className="navbar-container">
         <div className="navbar-brand">
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <h1>🛍️ My Online Store</h1>
+            <h1>📝 TodoList App</h1>
           </Link>
         </div>
 
         <div className="navbar-menu">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/" className="nav-link">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/catalog" className="nav-link">Catalog</Link>
+              <Link to="/" className="nav-link">Home / TodoList</Link>
             </li>
             <li className="nav-item">
               <Link to="/about" className="nav-link">About</Link>
