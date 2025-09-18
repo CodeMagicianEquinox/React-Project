@@ -5,7 +5,9 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-brand">
-          <h1>🛍️ My Online Store</h1>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <h1>🛍️ My Online Store</h1>
+          </Link>
         </div>
 
         <div className="navbar-menu">
@@ -17,10 +19,10 @@ function Navbar() {
               <Link to="/catalog" className="nav-link">Catalog</Link>
             </li>
             <li className="nav-item">
-              <a href="#support" className="nav-link">Support</a>
+              <Link to="/about" className="nav-link">About</Link>
             </li>
             <li className="nav-item">
-              <a href="#contact" className="nav-link">Contact</a>
+              <Link to="/contact" className="nav-link">Contact</Link>
             </li>
           </ul>
         </div>
