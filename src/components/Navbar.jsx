@@ -16,6 +16,9 @@ function Navbar() {
               <Link to="/" className="nav-link">Home / TodoList</Link>
             </li>
             <li className="nav-item">
+              <Link to="/todo" className="nav-link">ToDo</Link>
+            </li>
+            <li className="nav-item">
               <Link to="/about" className="nav-link">About</Link>
             </li>
             <li className="nav-item">
